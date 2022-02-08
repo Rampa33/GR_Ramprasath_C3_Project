@@ -65,4 +65,20 @@ class RestaurantTest {
                 ()->restaurant.removeFromMenu("French fries"));
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    @Test
+    public void passing_list_of_items_should_return_order_value() {
+        List<String> itemsInCart = Arrays.asList("Sweet corn soup", "Dry pasta", "Veg platter");
+        restaurant.addToMenu("Dry pasta",150);
+        restaurant.addToMenu("Veg platter", 350);
+        int expectedOrderValue = 119 + 150 + 350;
+        assertEquals(expectedOrderValue, restaurant.getOrderValue(itemsInCart));
+    }
+
+    @Test
+    public void passing_an_empty_list_of_items_should_return_zero() {
+        List<String> itemsInCart = Collections.emptyList();
+        int expectedOrderValue = 0;
+        assertEquals(expectedOrderValue, restaurant.getOrderValue(itemsInCart));
+    }
 }
